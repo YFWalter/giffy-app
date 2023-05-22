@@ -1,21 +1,37 @@
 import './App.css';
-import ListOfGifs from './components/ListofGifs'
 import { Link, Route } from 'wouter'
+import Home from './pages/Home'
+import SearchResults from './pages/SearchResults'
+import Detail from './pages/Detail'
+import StaticContext from './context/StaticContext';
+import { GifsContextProvider } from './context/GifsContext';
 
 function App() {
   return (
+    <StaticContext.Provider value={{name: 'Guali',
+    suscribeteAlCanal: true}}>
     <div className="App">
       <section className="App-content">
-        <h1>App</h1>
-          <Link to='/gif/brasil-70'>Gifs de Brasil '70</Link>
-          <Link to='/gif/cat'>Gatos</Link>
-          <Link to='/gif/chile'>Chile</Link>
+          <Link to='/'>
+            <img className='App-logo' alt='Giffy logo' src='icon-robot.png'></img>
+          </Link>
+          <GifsContextProvider>
+          <Route
+            component= {Home}
+            path= "/"
+          />
+          <Route
+            component= {SearchResults}
+            path="/search/:keyword"
+          />
           <Route 
-            path='/gif/:keyword' 
-            component= {ListOfGifs} 
+            component= {Detail} 
+            path='/gif/:id' 
          />
+         </GifsContextProvider>
       </section>
     </div>
+    </StaticContext.Provider>
   );
 }
 

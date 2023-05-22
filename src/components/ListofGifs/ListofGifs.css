@@ -1,0 +1,27 @@
+:root {
+    --results-columns: 2;
+  }
+  
+  .ListofGifs {
+    column-count: var(--results-columns);
+    column-gap: .5em;
+  }
+  
+
+  .ListofGifs {
+    -webkit-column-break-inside: avoid;
+    background-color: #eee;
+    display: inline-block;
+    width: 100%;
+  }
+  @media screen and (min-width: 600px) {
+    :root {
+      --results-column: 3;
+    }
+  }
+  
+  @media screen and (min-width: 60rem) {
+    :root {
+      --results-column: 4;
+    }
+  }
